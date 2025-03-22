@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            animation: fadeIn 1s ease;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4a6ed0, #2e4b8f);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideInDown 0.8s ease forwards;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            color: #2e4b8f;
+            margin: 1.5rem 0 1rem 0;
+            border-bottom: 3px solid #4a6ed0;
+            padding-bottom: 0.8rem;
+            animation: slideInRight 0.8s ease forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #2e4b8f;
+            margin: 1.2rem 0;
+            font-size: 1.4rem;
+        }
+        
+        .profile-subtitle {
+            font-size: 1.4rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-delay: 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.4s;
+        }
+        
+        .experience-container, .education-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.5s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-container:hover, .education-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(46, 75, 143, 0.2);
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-left: 28px;
+            border-left: 4px solid #4a6ed0;
+            padding-left: 25px;
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards;
+        }
+        
+        .experience-item:nth-child(1), .education-item:nth-child(1) {
+            animation-delay: 0.7s;
+        }
+        
+        .experience-item:nth-child(2), .education-item:nth-child(2) {
+            animation-delay: 0.9s;
+        }
+        
+        .experience-item:nth-child(3), .education-item:nth-child(3) {
+            animation-delay: 1.1s;
+        }
+        
+        .experience-item:last-child, .education-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .job-title, .degree {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2e4b8f;
+            margin-bottom: 0.3rem;
+        }
+        
+        .company, .institution {
+            font-weight: 600;
+            color: #4a6ed0;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        
+        .date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+        
+        .description {
+            margin-top: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        li:hover {
+            transform: translateX(8px);
+        }
+        
+        li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4a6ed0;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background-color: #f0f4ff;
+            border-left: 4px solid #4a6ed0;
+            padding: 1.2rem;
+            margin: 1.2rem 0;
+            transition: all 0.3s ease;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight:hover {
+            box-shadow: 0 8px 20px rgba(74, 110, 208, 0.25);
+            transform: translateY(-5px);
+            background-color: #e6eeff;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+        }
+        
+        .skill-tag {
+            background-color: #e6eeff;
+            color: #2e4b8f;
+            padding: 0.4rem 0.9rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(46, 75, 143, 0.15);
+        }
+        
+        .skill-tag:hover {
+            background-color: #2e4b8f;
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 10px rgba(46, 75, 143, 0.3);
+        }
+        
+        .top-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            width: calc(25% - 1rem);
+            min-width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(74, 110, 208, 0.2);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: #4a6ed0;
+            margin-bottom: 0.8rem;
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2e4b8f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-level {
+            width: 100%;
+            height: 8px;
+            background-color: #e6eeff;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.8rem;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4a6ed0, #2e4b8f);
+            border-radius: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #2e4b8f, #1d3267);
+            color: white;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: slideInUp 0.8s ease forwards;
+            animation-delay: 1.1s;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            background-color: #2e4b8f;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-home:hover {
+            background-color: #1d3267;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            text-align: center;
+            margin: 1.5rem 0;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+        
+        .testimonial {
+            font-style: italic;
+            padding: 1.2rem;
+            background-color: #f5f9ff;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 3rem;
+            color: #4a6ed0;
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #2e4b8f;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: #f5f9ff;
+            border-radius: 8px;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement:hover {
+            transform: translateX(5px);
+            background-color: #e6eeff;
+        }
+        
+        .achievement-icon {
+            font-size: 1.5rem;
+            color: #4a6ed0;
+        }
+        
+        .progress-container {
+            margin: 2rem 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e6eeff;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 1.2rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a6ed0, #2e4b8f);
+            border-radius: 5px;
+            transition: width 1.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .experience-container, .education-container {
+                padding: 1.5rem;
+            }
+            
+            .skill-card {
+                width: 100%;
+            }
+            
+            .highlight {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Professional Experience</h1>
+        <p class="profile-subtitle">Full Stack Developer & UI/UX Enthusiast</p>
+        <p class="profile-description">Passionate about creating seamless user experiences with modern technologies and creative problem-solving.</p>
+    </header>
+    
+    <div class="nav-container">
+        <a href="../index.html" class="back-to-home">← Back to Home</a>
+    </div>
+    
+    <div class="container">
+        <section class="top-skills">
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <div class="skill-name">Front-End Development</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <div class="skill-name">Back-End Development</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-name">UI/UX Design</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 80%"></div>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">Responsive Design</div>
+                <div class="skill-level">
+                    <div class="skill-progress" style="width: 95%"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="education-container">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <div class="degree">Bachelor of Technology in Artificial Intelligence</div>
+                <div class="institution">RTMNU University</div>
+                <div class="date">2025 - Present (1st Year)</div>
+                
+                <ul class="description">
+                    <li>Currently pursuing B.Tech in Artificial Intelligence</li>
+                    <li>Focusing on AI fundamentals, machine learning, and data science</li>
+                    <li>Actively participating in coding competitions and tech events</li>
+                </ul>
+                
+                <div class="highlight">
+                    <strong>Current Focus:</strong> Building a strong foundation in AI principles while developing practical programming skills.
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="degree">Full Stack Development Course</div>
+                <div class="institution">Enjoy Programming Pvt Ltd</div>
+                <div class="date">Current</div>
+                
+                <ul class="description">
+                    <li>Learning modern web development technologies and frameworks</li>
+                    <li>Developing practical skills in both frontend and backend development</li>
+                    <li>Working on real-world projects to build a professional portfolio</li>
+                    <li>Focusing on responsive design and user experience principles</li>
+                </ul>
+                
+                <div class="highlight">
+                    <strong>Skills being developed:</strong> HTML5, CSS3, JavaScript, React, Node.js, MongoDB, and various modern web technologies.
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="degree">12th Standard - Math Science Faculty</div>
+                <div class="institution">AD College Bharsingi</div>
+                <div class="date">Completed</div>
+                
+                <ul class="description">
+                    <li>Successfully completed 12th standard with focus on Mathematics and Science</li>
+                    <li>Developed strong analytical and problem-solving skills</li>
+                    <li>Participated in science exhibitions and mathematics competitions</li>
+                </ul>
+                
+                <div class="highlight">
+                    <strong>Foundation:</strong> Built a strong mathematical and scientific foundation that supports current technical studies.
+                </div>
+            </div>
+        </section>
+        
+        <section class="progress-container">
+            <h2>Technical Skills</h2>
+            
+            <div class="progress-label">
+                <span>Front-End Development</span>
+                <span>90%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 90%"></div>
+            </div>
+            
+            <div class="progress-label">
+                <span>Back-End Development</span>
+                <span>85%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%"></div>
+            </div>
+            
+            <div class="progress-label">
+                <span>Database Management</span>
+                <span>80%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+            </div>
+            
+            <div class="progress-label">
+                <span>DevOps</span>
+                <span>75%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 75%"></div>
+            </div>
+            
+            <div class="progress-label">
+                <span>UI/UX Design</span>
+                <span>80%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 80%"></div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <h3>Contact Information</h3>
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <span>ayushlolusare7@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📱</span>
+                <span>+91 9970954494</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">💼</span>
+                <span>linkedin.com/in/Ayush Lolusare</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">🌐</span>
+                <span>github.com/AyushFSD</span>
+            </div>
+        </div>
+        <p>© 2025 - Full Stack Developer</p>
+    </footer>
+</body>
+</html>
