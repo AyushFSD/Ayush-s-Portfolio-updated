@@ -1,91 +1,304 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        .main-container {
-            background-color: #fff;
-            width: 60vw;
-            margin: 10vh auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .display {
-            background-color: #3498db;
-            color: #fff;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            text-align: center;
-            padding: 20px;
-            font-size: 24px;
-        }
-
-        .input-container {
-            padding: 20px;
-        }
-
-        .input-box {
-            height: 40px;
-            width: calc(100% - 40px);
-            font-size: 18px;
-            margin-bottom: 20px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-box:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        .button {
-            width: 100%;
-            height: 40px;
-            background-color: #3498db;
-            color: #fff;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #2980b9;
-        }
-    </style>
-    <script>
-        function arithmaticExample(age) {
-            let output = "Full ticket";
-
-            if (age < 18) {
-                output = "Half Ticket";
-            }
-
-            document.getElementById("display").innerHTML = output;
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Eligibility Checker</title>
+  <style>
+    :root {
+      --primary: #6200ea;
+      --primary-light: #9d46ff;
+      --primary-dark: #0a00b6;
+      --secondary: #ff9100;
+      --light: #ffffff;
+      --dark: #333333;
+      --gray: #f5f5f5;
+      --success: #00c853;
+      --error: #ff1744;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .card {
+      width: 90%;
+      max-width: 450px;
+      background-color: var(--light);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header {
+      padding: 25px;
+      text-align: center;
+      background: var(--primary);
+      color: var(--light);
+      position: relative;
+    }
+    
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      z-index: -1;
+    }
+    
+    .header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .header p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .ticket-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 30px 30px;
+      min-height: 180px;
+    }
+    
+    .ticket-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+    
+    .ticket-result {
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    
+    .ticket-price {
+      font-size: 20px;
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .input-section {
+      padding: 25px;
+      background-color: var(--gray);
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .input-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+    
+    .age-input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: var(--light);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      color: var(--dark);
+    }
+    
+    .age-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.2);
+    }
+    
+    .check-button {
+      width: 100%;
+      padding: 15px;
+      background-color: var(--primary);
+      color: var(--light);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(98, 0, 234, 0.3);
+    }
+    
+    .check-button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(98, 0, 234, 0.4);
+    }
+    
+    .check-button:active {
+      transform: translateY(0);
+    }
+    
+    .error-message {
+      color: var(--error);
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    /* Animation classes */
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 500px) {
+      .card {
+        width: 95%;
+      }
+      
+      .header h1 {
+        font-size: 24px;
+      }
+      
+      .ticket-result {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="main-container">
-        <div class="display" id="display">
-            <h1 class="display-text" id="display-text"></h1>
-        </div>
-        <div class="input-container">
-            <input id="input" type="number" class="input-box" placeholder="Enter Age" />
-            <button class="button" onclick="arithmaticExample(document.getElementById('input').value)">Check Age</button>
-        </div>
+  <div class="card">
+    <div class="header">
+      <h1>Ticket Eligibility Checker</h1>
+      <p>Find your ticket type based on age</p>
     </div>
-</body>
+    
+    <div class="ticket-display">
+      <div class="ticket-icon" id="ticket-icon">🎟️</div>
+      <div class="ticket-result" id="ticket-result">Enter your age</div>
+      <div class="ticket-price" id="ticket-price"></div>
+    </div>
+    
+    <div class="input-section">
+      <div class="input-group">
+        <label for="age-input" class="input-label">Your Age</label>
+        <input 
+          type="number" 
+          id="age-input" 
+          class="age-input" 
+          placeholder="Enter your age"
+          min="0"
+          max="120">
+        <div class="error-message" id="error-message">Please enter a valid age</div>
+      </div>
+      <button class="check-button" id="check-button">Check Eligibility</button>
+    </div>
+  </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ageInput = document.getElementById('age-input');
+      const checkButton = document.getElementById('check-button');
+      const ticketResult = document.getElementById('ticket-result');
+      const ticketPrice = document.getElementById('ticket-price');
+      const ticketIcon = document.getElementById('ticket-icon');
+      const errorMessage = document.getElementById('error-message');
+      
+      // Function to determine ticket type and show result
+      function checkTicketType() {
+        const age = parseInt(ageInput.value);
+        
+        // Reset UI elements
+        errorMessage.style.display = 'none';
+        ticketResult.classList.remove('fade-in');
+        ticketPrice.classList.remove('fade-in');
+        
+        // Validate input
+        if (isNaN(age) || age < 0 || age > 120) {
+          errorMessage.style.display = 'block';
+          ticketResult.textContent = 'Invalid Age';
+          ticketPrice.textContent = '';
+          ticketIcon.innerHTML = '❌';
+          return;
+        }
+        
+        // Small delay for animation effect
+        setTimeout(() => {
+          let result, price, icon;
+          
+          if (age < 5) {
+            result = 'Free Entry';
+            price = 'No charge';
+            icon = '👶';
+          } else if (age < 12) {
+            result = 'Child Ticket';
+            price = '$5.00';
+            icon = '🧒';
+          } else if (age < 18) {
+            result = 'Youth Ticket';
+            price = '$8.00';
+            icon = '👦';
+          } else if (age >= 65) {
+            result = 'Senior Ticket';
+            price = '$7.50';
+            icon = '👴';
+          } else {
+            result = 'Adult Ticket';
+            price = '$12.00';
+            icon = '👨';
+          }
+          
+          // Update UI with animation
+          ticketResult.textContent = result;
+          ticketPrice.textContent = price;
+          ticketIcon.innerHTML = icon;
+          
+          ticketResult.classList.add('fade-in');
+          ticketPrice.classList.add('fade-in');
+        }, 200);
+      }
+      
+      // Event listeners
+      checkButton.addEventListener('click', checkTicketType);
+      
+      ageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          checkTicketType();
+        }
+      });
+      
+      // Input validation
+      ageInput.addEventListener('input', function() {
+        if (this.value.length > 0) {
+          errorMessage.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
 </html>
