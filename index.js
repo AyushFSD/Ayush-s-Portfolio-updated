@@ -3,41 +3,46 @@ document.addEventListener("DOMContentLoaded", function () {
   const projectNavItems = document.querySelectorAll(".project-nav-item");
   const projectCategories = document.querySelectorAll(".project-category");
 
-//   Add click event to project navigation
-  projectNavItems.forEach(item => {
-      item.addEventListener('click', function () {
-          const targetId = this.getAttribute('data-target');
+  //   Add click event to project navigation
+  projectNavItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const targetId = this.getAttribute("data-target");
 
-          projectNavItems.forEach(navItem => navItem.classList.remove('active'));
-          this.classList.add('active');
+      projectNavItems.forEach((navItem) => navItem.classList.remove("active"));
+      this.classList.add("active");
 
-          projectCategories.forEach(category => category.classList.remove('active'));
-          document.getElementById(targetId).classList.add('active');
-      });
+      projectCategories.forEach((category) =>
+        category.classList.remove("active")
+      );
+      document.getElementById(targetId).classList.add("active");
+    });
   });
 
-//   Fade-in animation for project cards
-  const projectCards = document.querySelectorAll('.project-card');
-  const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-          if (entry.isIntersecting) {
-              entry.target.classList.add('animated');
-              observer.unobserve(entry.target);
-          }
+  //   Fade-in animation for project cards
+  const projectCards = document.querySelectorAll(".project-card");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animated");
+          observer.unobserve(entry.target);
+        }
       });
-  }, { threshold: 0.1 });
+    },
+    { threshold: 0.1 }
+  );
 
   // projectCards.forEach(card => observer.observe(card));
 
   // Project links placeholder alert
-  const projectLinks = document.querySelectorAll('.project-links a');
-  projectLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-          if (this.getAttribute('href') === '#') {
-              e.preventDefault();
-              alert('Project link coming soon!');
-          }
-      });
+  const projectLinks = document.querySelectorAll(".project-links a");
+  projectLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      if (this.getAttribute("href") === "#") {
+        e.preventDefault();
+        alert("Project link coming soon!");
+      }
+    });
   });
 
   // Mobile menu toggle functionality
@@ -75,20 +80,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href");
+    if (targetId === "#") return;
 
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const headerHeight = document.querySelector("header").offsetHeight;
+      const targetPosition =
+        targetElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight;
 
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        }
-    });
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
+    }
+  });
 });
 
 // Active nav state based on scroll position

@@ -1,124 +1,126 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Manager</title>
     <style>
-      .main-container {
-        width: 100vw;
-        height: 100vh;
-        background-color: lightblue;
-        display: flex;
-        flex-direction: row;
-      }
-
-      .left-container {
-        width: 50%;
-        height: 100%;
-        background-color: blue;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 50px;
-      }
-
-      .right-container_cl {
-        width: 50%;
-        height: 100%;
-        background-color: green;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-end;
-        flex-wrap: wrap;
-      }
-
-      .plus-button {
-        background-color: green;
-        width: 40%;
-        height: 100px;
-        font-size: 22px;
-      }
-
-      .plus-button-hover {
-        background-color: #ffffff;
-        width: 40%;
-        height: 120px;
-        font-size: 32px;
-      }
-
-      .minus-button {
-        background-color: red;
-        width: 40%;
-        height: 100px;
-        font-size: 22px;
-      }
-
-      .brick {
-        background-color: red;
-        border-color: black;
-        border-width: 10px;
-        border-style: solid;
-        width: 20%;
-        height: 80px;
-        margin: 10px;
-      }
-    </style>
-  </head>
-
-  <body style="margin: 0">
-    <div class="main-container">
-      <div class="left-container">
-        <h1 style="color: white" id="count">1</h1>
-        <button
-          id="button-one"
-          class="plus-button"
-          onclick="addBrick()"
-          onmouseover="changeButtonColor()"
-        >
-          ADD
-        </button>
-        <button class="minus-button" onclick="removeBrick()">REMOVE</button>
-      </div>
-      <div id="right-container" class="right-container_cl">
-        <div class="brick"></div>
-      </div>
-    </div>
-    <script>
-      let count = 1;
-      const countElement = document.getElementById("count");
-      const rightContainer = document.getElementById("right-container");
-      const addButton = document.getElementById("button-one");
-
-      function addBrick() {
-        const newBrick = document.createElement("div");
-        newBrick.classList.add("brick");
-        rightContainer.appendChild(newBrick);
-        count++;
-        updateCount();
-      }
-
-      function removeBrick() {
-        const bricks = document.querySelectorAll(".brick");
-        if (bricks.length > 0) {
-          rightContainer.removeChild(bricks[bricks.length - 1]);
-          count--;
-          updateCount();
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-      }
 
-      function updateCount() {
-        countElement.textContent = count;
-      }
+        .main-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            background-color: #f4f4f4;
+        }
 
-      function changeButtonColor() {
-        addButton.classList.add("plus-button-hover");
-        addButton.classList.remove("plus-button");
-      }
+        .left-container {
+            width: 40%;
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            color: white;
+            padding: 20px;
+        }
 
-      addButton.addEventListener("mouseout", () => {
-        addButton.classList.add("plus-button");
-        addButton.classList.remove("plus-button-hover");
-      });
+        .left-container h1 {
+            font-size: 3rem;
+        }
+
+        .button {
+            width: 60%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .add-button {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .add-button:hover {
+            background-color: #2ecc71;
+        }
+
+        .remove-button {
+            background-color: #c0392b;
+            color: white;
+        }
+
+        .remove-button:hover {
+            background-color: #e74c3c;
+        }
+
+        .right-container {
+            width: 60%;
+            background-color: #ecf0f1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .brick {
+            width: 80px;
+            height: 80px;
+            background-color: #e74c3c;
+            border: 5px solid black;
+            margin: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="left-container">
+            <h1 id="count">1</h1>
+            <button class="button add-button" onclick="addBrick()">ADD</button>
+            <button class="button remove-button" onclick="removeBrick()">REMOVE</button>
+        </div>
+        <div id="right-container" class="right-container">
+            <div class="brick"></div>
+        </div>
+    </div>
+
+    <script>
+        let count = 1;
+        const countElement = document.getElementById("count");
+        const rightContainer = document.getElementById("right-container");
+
+        function addBrick() {
+            const newBrick = document.createElement("div");
+            newBrick.classList.add("brick");
+            rightContainer.appendChild(newBrick);
+            count++;
+            updateCount();
+        }
+
+        function removeBrick() {
+            const bricks = document.querySelectorAll(".brick");
+            if (bricks.length > 0) {
+                rightContainer.removeChild(bricks[bricks.length - 1]);
+                count--;
+                updateCount();
+            }
+        }
+
+        function updateCount() {
+            countElement.textContent = count;
+        }
     </script>
-  </body>
+</body>
 </html>
