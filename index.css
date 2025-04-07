@@ -11,7 +11,7 @@
   --js: #f0db4f;
   --sql: #00758f;
   --qa: #6b4fbb;
-  --liveProject:#2fc2aa;
+  --liveProject: #2fc2aa;
 }
 
 * {
@@ -185,9 +185,9 @@ nav {
   top: calc(100% + 10px);
   right: -10px;
   background: linear-gradient(
-      135deg,
-      rgba(24, 42, 80, 0.98) 0%,
-      rgba(33, 56, 109, 0.98) 100%
+    135deg,
+    rgba(24, 42, 80, 0.98) 0%,
+    rgba(33, 56, 109, 0.98) 100%
   );
   min-width: 200px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -248,79 +248,67 @@ nav {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Responsive styles */
+/* Mobile styles */
 @media (max-width: 768px) {
-  .menu-toggle {
-      display: flex;
-  }
-  
-  .nav-links {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(
-          135deg,
-          rgba(24, 42, 80, 0.98) 0%,
-          rgba(33, 56, 109, 0.98) 100%
-      );
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px;
-      transform: translateY(-10px);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .nav-links.active {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-  }
-  
-  .nav-links li {
-      margin: 15px 0 15px 0;
-      width: 100%;
-  }
-  
+  /* Make sure dropdown menus start hidden */
   .dropdown-menu {
-      position: static;
-      background: rgba(20, 35, 65, 0.7);
-      box-shadow: none;
-      padding-left: 15px;
-      border-radius: 4px;
-      margin-top: 10px;
-      display: none;
-      opacity: 1;
-      visibility: visible;
-      transform: none;
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+    margin: 0;
+    position: static; /* Changed from absolute to static */
+    box-shadow: none; /* Remove shadow on mobile */
+    background: transparent; /* Make background transparent on mobile */
+    min-width: auto; /* Auto width on mobile */
+    transform: none; /* No transform on mobile */
   }
-  
+
+  /* Show dropdown when active */
   .dropdown.active .dropdown-menu {
-      display: block;
+    display: block;
+    max-height: 300px; /* Reduced from 400px */
+    padding-left: 10px; /* Reduced from 15px */
+    margin-top: 5px; /* Reduced from 10px */
+    border-left: 1px solid rgba(255, 255, 255, 0.2); /* Add a subtle left border */
   }
-  
-  .menu-toggle.active span:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
+
+  /* Ensure the toggle is clickable on the entire area */
+  .dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+    padding-right: 15px; /* Reduced from 20px */
   }
-  
-  .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
+
+  /* Improve tap targets on mobile */
+  .nav-links a,
+  .dropdown-menu a {
+    padding: 8px 0; /* Reduced from 12px */
   }
-  
-  .menu-toggle.active span:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
+
+  .dropdown-menu li a {
+    padding: 8px 10px; /* Reduced from 10px 15px */
+    font-size: 0.95em; /* Slightly smaller font size */
   }
-  
-  .dropdown-toggle::after {
-      position: absolute;
-      right: 10px;
+
+  /* Reduce spacing between dropdown items */
+  .dropdown-menu li {
+    margin: 0;
+    line-height: 1.2; /* Tighter line height */
   }
-  
-  .dropdown.active .dropdown-toggle::after {
-      transform: rotate(180deg);
+
+  /* Add mobile menu container styling */
+  .nav-links.mobile-active {
+    padding: 10px; /* Add some padding to the container */
+    max-height: 80vh; /* Limit height and allow scrolling */
+    overflow-y: auto; /* Enable scrolling */
+  }
+
+  /* Compact spacing between main nav items */
+  .nav-links li {
+    margin-left: 0;
+    margin-bottom: 5px; /* Small gap between items */
   }
 }
 /* Hero Section */
@@ -739,7 +727,9 @@ footer {
     right: -100%;
     width: 70%;
     height: 100vh;
-    background-color: var(--dark); /* Changed from white to var(--dark) to match header */
+    background-color: var(
+      --dark
+    ); /* Changed from white to var(--dark) to match header */
     flex-direction: column;
     align-items: center;
     justify-content: center;
