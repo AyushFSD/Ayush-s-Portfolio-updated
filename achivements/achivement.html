@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Achievements Portfolio</title>
+    <link rel="stylesheet" href="./achivement.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Student Achievement Portfolio</h1>
+            <p>Excellence Through Dedication and Hard Work</p>
+            <a href="../index.html" class="home-button"><i class="fas fa-home"></i> Back to Home</a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="content-section">
+                <h2>About My Academic Journey</h2>
+                <p>As a dedicated student pursuing excellence in my field, I have consistently worked to develop my skills and knowledge. My academic journey reflects my commitment to learning and growth, with achievements that demonstrate both technical competence and personal development.</p>
+                
+                <div class="image-container">
+                    <img id="professionalImage" src="../assets/images/Certificate.jpeg" alt="Academic Certificate" onclick="openModal()">
+                    <p><em>Click on the certificate to view details</em></p>
+                </div>
+                
+                <h2>Key Achievements</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <h3>Academic Excellence</h3>
+                        <p>Consistently maintained a high GPA throughout my academic career, demonstrating a strong understanding of core concepts and dedication to scholarly pursuits.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <h3>Research Projects</h3>
+                        <p>Participated in research initiatives that expanded my knowledge and contributed to my field, developing critical thinking and analytical skills.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <h3>Leadership Roles</h3>
+                        <p>Served in student organizations that fostered teamwork, communication, and leadership abilities essential for professional growth.</p>
+                    </div>
+                    
+                    <div class="achievement-card">
+                        <h3>Technical Skills</h3>
+                        <p>Developed proficiency in industry-relevant tools and technologies through coursework, independent study, and practical application.</p>
+                    </div>
+                </div>
+                
+                <h2>Professional Development</h2>
+                <p>My educational journey has been complemented by professional development opportunities that have prepared me for future career challenges. I believe in continuous improvement and seek opportunities to enhance my skills and expand my knowledge base.</p>
+                
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>I welcome opportunities to discuss my achievements and qualifications. Please feel free to contact me to learn more about my academic background and professional aspirations.</p>
+                    <p><strong>Email:</strong> your.email@example.com<br>
+                    <strong>LinkedIn:</strong> linkedin.com/in/yourprofile</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Modal for image -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ayush Lolusare. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("imageModal");
+        const img = document.getElementById("professionalImage");
+        const modalImg = document.getElementById("modalImg");
+        
+        function openModal() {
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+        
+        function closeModal() {
+            modal.style.display = "none";
+        }
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
