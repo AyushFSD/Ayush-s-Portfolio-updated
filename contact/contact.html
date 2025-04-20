@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <style>
+        :root {
+            --primary: #4a6cfa;
+            --secondary: #8e2de2;
+            --accent: #ff6b6b;
+            --success: #20c997;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            background-image: radial-gradient(at 90% 10%,
+                    rgba(74, 108, 250, 0.1) 0px,
+                    transparent 50%),
+                radial-gradient(at 10% 90%,
+                    rgba(142, 45, 226, 0.1) 0px,
+                    transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .back-to-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 108, 250, 0.3);
+            border-color: var(--primary);
+            background: linear-gradient(to right,
+                    rgba(74, 108, 250, 0.05),
+                    rgba(142, 45, 226, 0.05));
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            animation: gradientFlow 5s ease infinite;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInRight 1s ease forwards 0.5s;
+        }
+
+        .contact-form-container {
+            flex: 2;
+            min-width: 300px;
+            transform: translateX(50px);
+            opacity: 0;
+            animation: slideInLeft 1s ease forwards 0.5s;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards 0.8s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    var(--primary),
+                    var(--secondary));
+        }
+
+        .info-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(to right,
+                    rgba(74, 108, 250, 0.1),
+                    rgba(142, 45, 226, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: 1;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e1e5ee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(74, 108, 250, 0.1);
+            background-color: white;
+        }
+
+        .form-group::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .form-group:focus-within::after {
+            width: 100%;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error .form-control {
+            border-color: var(--accent);
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background-size: 200% auto;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 108, 250, 0.3);
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .loading-indicator {
+            display: none;
+            margin-right: 8px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .alert-box {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: top 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 1000;
+        }
+
+        .alert-box.success {
+            background-color: var(--success);
+        }
+
+        .alert-box.error {
+            background-color: var(--accent);
+        }
+
+        .alert-box.show {
+            top: 20px;
+        }
+
+        /* Decorative elements */
+        .shape {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 15s infinite alternate ease-in-out;
+        }
+
+        .shape-1 {
+            top: 10%;
+            right: 5%;
+            width: 300px;
+            height: 300px;
+            border-radius: 62% 38% 46% 54% / 60% 63% 37% 40%;
+            background: linear-gradient(45deg,
+                    rgba(74, 108, 250, 0.1),
+                    rgba(142, 45, 226, 0.1));
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            bottom: 10%;
+            left: 5%;
+            width: 250px;
+            height: 250px;
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            background: linear-gradient(45deg,
+                    rgba(142, 45, 226, 0.1),
+                    rgba(74, 108, 250, 0.1));
+            animation-delay: -3s;
+        }
+
+        /* Form label animation */
+        .form-control:focus+label,
+        .form-control:not(:placeholder-shown)+label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            padding: 0 5px;
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Animation for the ripple effect */
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(10);
+                opacity: 0;
+            }
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0px, 0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(20px, -20px) rotate(10deg);
+            }
+
+            100% {
+                transform: translate(-20px, 20px) rotate(-10deg);
+            }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .contact-info,
+            .contact-form-container {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .back-to-home {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .info-box,
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <a href="../index.html" class="back-to-home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Home
+    </a>
+
+    <div class="contact-container">
+        <div class="header">
+            <h1 id="mainTitle">Get in Touch</h1>
+            <p class="subtitle">
+                I'd love to hear from you! Whether you have a question, project idea,
+                or just want to say hello – fill out the form below and I'll get back
+                to you as soon as possible.
+            </p>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="info-box">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <div class="icon-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span>+91 9970954494</span>
+                        </li>
+                        <li>
+                            <div class="icon-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <span>ayushlolusare7@gmail.com</span>
+                        </li>
+                        <li>
+                            <div class="icon-circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <span>Rohana, Nagpur, Maharashtra, India</span>
+                        </li>
+                    </ul>
+                    <div class="social-icons">
+                        <div class="social-icon" data-platform="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </div>
+                        <div class="social-icon" data-platform="Instagram">
+                            <svg xmlns="https://www.instagram.com/ayush_lolusare/" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="social-icon" data-platform="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </div>
+                        <div class="social-icon" data-platform="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>Office Location</h3>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.1471391625293!2d78.47686529999999!3d21.3472237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd451e3bca75027%3A0x304645a5a32f05ee!2sRohana%2C%20Maharashtra%20441305!5e0!3m2!1sen!2sin!4v1713726462723!5m2!1sen!2sin"
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" name="name" placeholder=" " required />
+                            <label for="name">Your Name</label>
+                            <div class="error-message">Please enter your name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder=" " required />
+                            <label for="email">Your Email</label>
+                            <div class="error-message">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder=" "
+                                required />
+                            <label for="subject">Subject</label>
+                            <div class="error-message">Please enter a subject</div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" name="message" placeholder=" "
+                                required></textarea>
+                            <label for="message">Your Message</label>
+                            <div class="error-message">Please enter your message</div>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="loading-indicator">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="12" y1="2" x2="12" y2="6"></line>
+                                    <line x1="12" y1="18" x2="12" y2="22"></line>
+                                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                                    <line x1="2" y1="12" x2="6" y2="12"></line>
+                                    <line x1="18" y1="12" x2="22" y2="12"></line>
+                                    <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                                    <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                                </svg>
+                            </span>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-box" id="alertBox">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span id="alertMessage"></span>
+    </div>
+
+    <body>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Text animation for main title
+                const mainTitle = document.getElementById("mainTitle");
+                const titleText = mainTitle.textContent;
+                mainTitle.textContent = "";
+
+                setTimeout(() => {
+                    for (let i = 0; i < titleText.length; i++) {
+                        const span = document.createElement("span");
+                        span.textContent = titleText[i];
+                        span.style.display = "inline-block";
+                        span.style.opacity = "0";
+                        span.style.transform = "translateY(20px)";
+                        span.style.transition = `all 0.3s ease ${i * 0.03}s`;
+
+                        mainTitle.appendChild(span);
+
+                        // Trigger animation after a small delay
+                        setTimeout(() => {
+                            span.style.opacity = "1";
+                            span.style.transform = "translateY(0)";
+                        }, 100);
+                    }
+                }, 300);
+            });
+
+            // Ripple effect for buttons
+            function createRipple(event) {
+                const button = this;
+
+                // Remove existing ripples
+                const ripples = button.getElementsByClassName("ripple");
+                while (ripples.length > 0) {
+                    ripples[0].remove();
+                }
+
+                const circle = document.createElement("span");
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+                circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+                circle.classList.add("ripple");
+
+                button.appendChild(circle);
+            }
+
+            // Add ripple effect to buttons
+            document
+                .querySelector(".submit-btn")
+                .addEventListener("click", createRipple);
+            document
+                .querySelector(".back-to-home")
+                .addEventListener("click", createRipple);
+
+            // Form validation
+            const contactForm = document.getElementById("contactForm");
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const subjectInput = document.getElementById("subject");
+            const messageInput = document.getElementById("message");
+            const submitBtn = document.getElementById("submitBtn");
+            const loadingIndicator = document.querySelector(".loading-indicator");
+            const alertBox = document.getElementById("alertBox");
+            const alertMessage = document.getElementById("alertMessage");
+
+            // Form submission
+            contactForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                // Validate the form
+                let isValid = true;
+
+                if (!nameInput.value.trim()) {
+                    showError(nameInput, "Please enter your name");
+                    isValid = false;
+                } else {
+                    clearError(nameInput);
+                }
+
+                if (!emailInput.value.trim()) {
+                    showError(emailInput, "Please enter your email address");
+                    isValid = false;
+                } else if (!isValidEmail(emailInput.value)) {
+                    showError(emailInput, "Please enter a valid email address");
+                    isValid = false;
+                } else {
+                    clearError(emailInput);
+                }
+
+                if (!subjectInput.value.trim()) {
+                    showError(subjectInput, "Please enter a subject");
+                    isValid = false;
+                } else {
+                    clearError(subjectInput);
+                }
+
+                if (!messageInput.value.trim()) {
+                    showError(messageInput, "Please enter your message");
+                    isValid = false;
+                } else {
+                    clearError(messageInput);
+                }
+
+                if (isValid) {
+                    // Show loading indicator
+                    loadingIndicator.style.display = "inline-block";
+                    submitBtn.disabled = true;
+
+                    // Simulate form submission with a timeout
+                    setTimeout(function () {
+                        // Hide loading indicator
+                        loadingIndicator.style.display = "none";
+                        submitBtn.disabled = false;
+
+                        // Reset form
+                        contactForm.reset();
+
+                        // Show success message
+                        showAlert("Your message has been sent successfully!", "success");
+
+                        // In a real application, you would submit the form data to a server here
+                        // using fetch() or XMLHttpRequest
+                    }, 1500);
+                }
+            });
+
+            // Input focus effects
+            const formControls = document.querySelectorAll(".form-control");
+            formControls.forEach((input) => {
+                input.addEventListener("focus", function () {
+                    this.parentElement.classList.add("focused");
+                });
+
+                input.addEventListener("blur", function () {
+                    this.parentElement.classList.remove("focused");
+                });
+            });
+
+            // Social icon hover animation
+            const socialIcons = document.querySelectorAll(".social-icon");
+            socialIcons.forEach((icon) => {
+                icon.addEventListener("click", function () {
+                    const platform = this.getAttribute("data-platform");
+                    showAlert(`Redirecting to ${platform}...`, "success");
+
+                    // In a real application, you would redirect to the social media page here
+                    // window.location.href = `https://${platform.toLowerCase()}.com/yourprofile`;
+                });
+            });
+
+            // Utility functions
+            function showError(input, message) {
+                const formGroup = input.parentElement;
+                const errorMessage = formGroup.querySelector(".error-message");
+                formGroup.classList.add("error");
+                errorMessage.textContent = message;
+            }
+
+            function clearError(input) {
+                const formGroup = input.parentElement;
+                formGroup.classList.remove("error");
+            }
+
+            function isValidEmail(email) {
+                const re =
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function showAlert(message, type) {
+                alertMessage.textContent = message;
+                alertBox.className = `alert-box ${type}`;
+                alertBox.classList.add("show");
+
+                // Hide the alert after 3 seconds
+                setTimeout(function () {
+                    alertBox.classList.remove("show");
+                }, 3000);
+            }
+
+            // Animation for elements when they come into view
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("animated");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.1,
+                }
+            );
+
+            document.querySelectorAll(".info-box, .contact-form").forEach((el) => {
+                observer.observe(el);
+            });
+        </script>
+    </body>
+</body>
+
+</html>
