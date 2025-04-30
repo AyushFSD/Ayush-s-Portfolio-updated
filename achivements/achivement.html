@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayush Lolusare - Achievement Portfolio</title>
+    <title>Ayush Lolusare - Professional Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./achivement.css">
 </head>
@@ -21,8 +21,22 @@
     <main>
         <div class="container">
             <section class="profile-section">
-                <img src="../assets/images/ayush_profile_ep.jpeg" alt="Ayush Lolsare" class="profile-image">
-                <p>"Excellence through dedication and continuous learning"</p>
+                <img src="../assets/images/ayush_profile_ep.jpeg" alt="Ayush Lolusare" class="profile-image">
+                <p class="profile-quote">"Excellence through dedication and continuous learning"</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">6+</span>
+                        <span class="stat-label">Certifications</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">11+</span>
+                        <span class="stat-label">Technologies</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-label">Achievements</span>
+                    </div>
+                </div>
             </section>
             
             <section class="content-section">
@@ -31,77 +45,202 @@
                 <div class="education-section">
                     <div class="education-item">
                         <h3>B.Tech in Artificial Intelligence</h3>
-                        <p>RTMNU University | Current</p>
+                        <p><i class="fas fa-university"></i> RTMNU University | <span class="education-status">Current</span></p>
                         <p>Pursuing a comprehensive degree program focused on artificial intelligence, machine learning, and data science fundamentals.</p>
                     </div>
                     
                     <div class="education-item">
                         <h3>Full Stack Development Course</h3>
-                        <p>Enjoy Programming Pvt. Ltd. | Certified</p>
+                        <p><i class="fas fa-certificate"></i> Enjoy Programming Pvt. Ltd. | <span class="education-status">Certified</span></p>
                         <p>Successfully completed the first level of intensive training in full stack development technologies and methodologies.</p>
                     </div>
                 </div>
+            </section>
+            
+            <section class="content-section">
+                <h2><i class="fas fa-award"></i> Professional Certifications</h2>
+                <p class="section-intro">A collection of professional certifications demonstrating my commitment to continuous learning and skill development.</p>
                 
-                <div class="image-container">
-                    <img id="professionalImage" src="../assets/images/Certificate.jpeg" alt="Certification from Enjoy Programming Pvt. Ltd." onclick="openModal()">
-                    <p><em>Click on the certificate to view details</em></p>
+                <div class="certificate-gallery">
+                    <div class="certificate-item" onclick="openModal(this)" data-src="../assets/certificates/Ep-certificate.jpeg" data-title="Full Stack Development Certificate">
+                        <div class="certificate-overlay">
+                            <div class="certificate-info">
+                                <h3>Full Stack Development</h3>
+                                <p>(Lavel 1)</p>
+                                <p>Enjoy Programming Pvt. Ltd.</p>
+                            </div>
+                        </div>
+                        <img src="../assets/certificates/Ep-certificate.jpeg" alt="Full Stack Development Certificate">
+                    </div>
+                    
+                    <div class="certificate-item" onclick="openModal(this)" data-src="../assets/certificates/quiz-one.jpg" data-title="React.js Certification">
+                        <div class="certificate-overlay">
+                            <div class="certificate-info">
+                                <h3>React.js Development</h3>
+                                <p>Frontend Mastery Program</p>
+                            </div>
+                        </div>
+                        <img src="../assets/certificates/quiz-one.jpg" alt="React.js Certification">
+                    </div>
+                    
+                    <div class="certificate-item" onclick="openModal(this)" data-src="../assets/certificates/quiz-two.jpg" data-title="AI Fundamentals Certificate">
+                        <div class="certificate-overlay">
+                            <div class="certificate-info">
+                                <h3>AI Fundamentals</h3>
+                                <p>Machine Learning Essentials</p>
+                            </div>
+                        </div>
+                        <img src="../assets/certificates/quiz-two.jpg" alt="AI Fundamentals Certificate">
+                    </div>
+                    
+                    <div class="certificate-item" onclick="openModal(this)" data-src="../assets/certificates/quiz-three.jpg" data-title="Node.js Backend Development">
+                        <div class="certificate-overlay">
+                            <div class="certificate-info">
+                                <h3>Node.js Backend</h3>
+                                <p>Server-Side JavaScript</p>
+                            </div>
+                        </div>
+                        <img src="../assets/certificates/quiz-three.jpg" alt="Node.js Backend Development">
+                    </div>
+                    
+                    <div class="certificate-item" onclick="openModal(this)" data-src="../assets/certificates/quiz-four.jpg" data-title="Database Design Certificate">
+                        <div class="certificate-overlay">
+                            <div class="certificate-info">
+                                <h3>Database Design</h3>
+                                <p>SQL & NoSQL Systems</p>
+                            </div>
+                        </div>
+                        <img src="../assets/certificates/quiz-four.jpg" alt="Database Design Certificate">
+                    </div>
+                    
+                    <div class="certificate-item" onclick="openModal(this)" data-src="../assets/certificates/quiz-five.jpg" data-title="Advanced Web Development">
+                        <div class="certificate-overlay">
+                            <div class="certificate-info">
+                                <h3>Advanced Web Dev</h3>
+                                <p>Modern Web Technologies</p>
+                            </div>
+                        </div>
+                        <img src="../assets/certificates/quiz-five.jpg" alt="Advanced Web Development">
+                    </div>
                 </div>
             </section>
             
             <section class="content-section">
                 <h2><i class="fas fa-code"></i> Technical Skills</h2>
                 
-                <div class="skills-section">
-                    <h3>Programming Languages</h3>
-                    <div class="skills-container">
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">SASS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Ruby</span>
-                        <span class="skill-tag">Swift</span>
-                        <span class="skill-tag">XML</span>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-laptop-code"></i> Programming Languages</h3>
+                        <div class="skills-grid">
+                            <div class="skill-progress">
+                                <span class="skill-name">HTML5/CSS3</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">Python</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">Java</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">C/C++</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">Ruby</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="skills-section">
-                    <h3>Frameworks & Technologies</h3>
-                    <div class="skills-container">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Ruby on Rails</span>
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
+                    
+                    <div class="skill-category">
+                        <h3><i class="fas fa-sitemap"></i> Frameworks & Technologies</h3>
+                        <div class="skills-grid">
+                            <div class="skill-progress">
+                                <span class="skill-name">React.js</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">Node.js</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">Ruby on Rails</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">PostgreSQL</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <span class="skill-name">Git/GitHub</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
             
             <section class="content-section">
-                <h2><i class="fas fa-trophy"></i> Achievements</h2>
+                <h2><i class="fas fa-trophy"></i> Key Achievements</h2>
                 
                 <div class="achievements-grid">
                     <div class="achievement-card">
-                        <h3>Certification from Enjoy Programming</h3>
+                        <div class="achievement-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Full Stack Certification</h3>
                         <p>Successfully cleared the first level of the Full Stack Development course, demonstrating proficiency in web development technologies.</p>
                     </div>
                     
                     <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
                         <h3>Kho Kho Tournament Winner</h3>
-                        <p>Won a Kho Kho tournament in 2020 and received a medal for outstanding performance, showcasing teamwork and athletic abilities.</p>
+                        <p>Won a Kho Kho tournament in 2020 and received a Gold medal for outstanding performance, showcasing teamwork and athletic abilities.</p>
                     </div>
                     
                     <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
                         <h3>Academic Excellence</h3>
                         <p>Consistently maintained high academic standards in B.Tech program, with focus on artificial intelligence concepts and applications.</p>
                     </div>
                     
                     <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
                         <h3>Technical Projects</h3>
                         <p>Developed various applications applying the full range of programming languages and frameworks learned during coursework.</p>
                     </div>
@@ -115,39 +254,126 @@
                 <p>With a strong foundation in both AI and Full Stack Development, I aim to create innovative solutions that leverage the power of artificial intelligence with robust web application architectures.</p>
                 
                 <div class="contact-info">
-                    <h3>Contact Information</h3>
+                    <h3><i class="fas fa-id-card"></i> Contact Information</h3>
                     <p>I welcome opportunities to discuss potential collaborations, projects, or professional opportunities.</p>
                     
                     <div class="contact-links">
-                        <a href="mailto:ayushlolusare7@gmail.com"><i class="fas fa-envelope"></i> ayushlolusare7@gmail.com</a>
-                        <a href="https://www.linkedin.com/in/ayush-lolusare-742a11354/"><i class="fab fa-linkedin"></i> Ayush Lolusare</a>
-                        <a href="https://github.com/AyushFSD/Ayush-s-Portfolio-updated"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="mailto:ayushlolusare7@gmail.com" class="contact-button">
+                            <i class="fas fa-envelope"></i> ayushlolusare7@gmail.com
+                        </a>
+                        <a href="https://www.linkedin.com/in/ayush-lolusare-742a11354/" class="contact-button">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/AyushFSD/Ayush-s-Portfolio-updated" class="contact-button">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
                     </div>
                 </div>
             </section>
         </div>
     </main>
     
-    <!-- Modal for image -->
-    <div id="imageModal" class="modal">
+    <!-- Modal for certificates -->
+    <div id="certificateModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImg">
+        <div class="modal-content-wrapper">
+            <img class="modal-content" id="modalImg">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+        <div class="modal-nav">
+            <button class="modal-nav-btn prev-btn" onclick="navigateCertificate(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="modal-nav-btn next-btn" onclick="navigateCertificate(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
     </div>
     
     <footer>
         <div class="container">
-            <p>&copy; 2025 Ayush Sunil Lolsare. All Rights Reserved.</p>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Ayush Lolusare</h3>
+                    <p>B.Tech in AI & Full Stack Developer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="#"><i class="fas fa-id-card"></i> Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2025 Ayush Sunil Lolusare. All Rights Reserved.</p>
         </div>
     </footer>
     
     <script>
-        function openModal() {
-            const modal = document.getElementById("imageModal");
-            const img = document.getElementById("professionalImage");
+        // Array to store all certificate items
+        let certificateItems = [];
+        let currentCertificateIndex = 0;
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all certificate items
+            certificateItems = document.querySelectorAll('.certificate-item');
+            
+            // Close modal if user clicks outside the modal content
+            const modal = document.getElementById("certificateModal");
+            
+            window.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (document.getElementById('certificateModal').style.display === 'block') {
+                    if (e.key === 'ArrowLeft') {
+                        navigateCertificate(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        navigateCertificate(1);
+                    } else if (e.key === 'Escape') {
+                        closeModal();
+                    }
+                }
+            });
+            
+            // Animate skills on scroll
+            const skillSections = document.querySelectorAll('.skill-category');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.progress').forEach(progress => {
+                            progress.style.width = progress.style.width;
+                            progress.style.transition = 'width 1.5s ease-in-out';
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            skillSections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+        
+        function openModal(element) {
+            const modal = document.getElementById("certificateModal");
             const modalImg = document.getElementById("modalImg");
+            const modalCaption = document.getElementById("modalCaption");
+            
+            // Find index of clicked certificate
+            for (let i = 0; i < certificateItems.length; i++) {
+                if (certificateItems[i] === element) {
+                    currentCertificateIndex = i;
+                    break;
+                }
+            }
             
             modal.style.display = "block";
-            modalImg.src = img.src;
+            modalImg.src = element.getAttribute('data-src');
+            modalCaption.innerText = element.getAttribute('data-title');
             
             // Add a slight delay before adding the show class for the animation
             setTimeout(function() {
@@ -156,7 +382,7 @@
         }
         
         function closeModal() {
-            const modal = document.getElementById("imageModal");
+            const modal = document.getElementById("certificateModal");
             
             modal.classList.remove("show");
             
@@ -166,16 +392,27 @@
             }, 500);
         }
         
-        document.addEventListener("DOMContentLoaded", function () {
-            // Close modal if user clicks outside the modal content
-            const modal = document.getElementById("imageModal");
+        function navigateCertificate(direction) {
+            currentCertificateIndex = (currentCertificateIndex + direction + certificateItems.length) % certificateItems.length;
+            const newCertificate = certificateItems[currentCertificateIndex];
             
-            window.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            });
-        });
+            const modalImg = document.getElementById("modalImg");
+            const modalCaption = document.getElementById("modalCaption");
+            
+            // Fade out
+            modalImg.style.opacity = 0;
+            modalCaption.style.opacity = 0;
+            
+            // Change image after a short delay
+            setTimeout(function() {
+                modalImg.src = newCertificate.getAttribute('data-src');
+                modalCaption.innerText = newCertificate.getAttribute('data-title');
+                
+                // Fade in
+                modalImg.style.opacity = 1;
+                modalCaption.style.opacity = 1;
+            }, 300);
+        }
     </script>
 </body>
 </html>
